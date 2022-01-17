@@ -1,13 +1,16 @@
 import random
 print("The game is about to start. If you want to leave, type 'exit' at any time.")
 
-def randomNumber():
-    numberOfGuesses = 0
+def generate_Number():
+    global randNumber
     randNumber = random.randint(1, 9)
     print("Number has been generated")
     print("number is", randNumber)
+    return randNumber
 
-    while(True):
+def random_Number():
+    numberOfGuesses = 0
+    while True:
         numberOfGuesses += 1
         try:
             userGuess = input("Guess the number! ")
@@ -26,9 +29,19 @@ def randomNumber():
             print("Congratulations, you've guessed the number correctly! \nYour number of tries:", numberOfGuesses)
             break
 
-    tryAgain = input("Do you want to play again? [Yes \ No] \n")
-    if tryAgain.lower() == "yes":
-        randomNumber()
-    else:
+def play_Again():
+    try_Again = input("Do you want to play again? [Yes \ No] \n")
+    if try_Again.lower() == "yes":
+        main()
+    elif try_Again.lower() == "no":
         quit()
-randomNumber()
+    else:
+        print("Error! You have to type in {} or {}".format("Yes","No"))
+        play_Again()
+
+def main():
+    generate_Number()
+    random_Number()
+    play_Again()
+
+main()
