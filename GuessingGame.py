@@ -8,10 +8,9 @@ def generate_Number():
     print("number is", randNumber)
     return randNumber
 
-def random_Number():
+def compare_Numbers():
     numberOfGuesses = 0
     while True:
-        numberOfGuesses += 1
         try:
             userGuess = input("Guess the number! ")
             if userGuess == "exit":
@@ -19,15 +18,15 @@ def random_Number():
             userGuess = int(userGuess)
         except ValueError:
             print("Error. You have to type in a number")
-            continue
-        
-        if userGuess < randNumber:
-            print("Your number is lower than original number. Keep trying!")
-        elif userGuess > randNumber:
-            print("Your number is higher than generated number. Keep trying!")
         else:
-            print("Congratulations, you've guessed the number correctly! \nYour number of tries:", numberOfGuesses)
-            break
+            numberOfGuesses += 1
+            if userGuess < randNumber:
+                print("Your number is lower than original number. Keep trying!")
+            elif userGuess > randNumber:
+                print("Your number is higher than generated number. Keep trying!")
+            else:
+                print("Congratulations, you've guessed the number correctly! \nYour number of tries:", numberOfGuesses)
+                break
 
 def play_Again():
     try_Again = input("Do you want to play again? [Yes \ No] \n")
@@ -41,7 +40,7 @@ def play_Again():
 
 def main():
     generate_Number()
-    random_Number()
+    compare_Numbers()
     play_Again()
 
 main()
